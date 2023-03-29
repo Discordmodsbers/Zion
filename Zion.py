@@ -37,15 +37,7 @@ def checker():
     t.sleep(3)
   else:
     print(f"Update needed ! \n Please hit option 3 in the main menu \n If you dont then the code will be outdated and buggy.")
-    while True:
-      option = input("")
-      if option =='y':
-        update()
-      elif option =='Y':
-        update()
-      else:
-        print("Please note there will be bugs .")
-        break
+
 
 # End
 
