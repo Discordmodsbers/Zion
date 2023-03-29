@@ -179,5 +179,6 @@ def transition():
 	
 
 if __name__ ==__name__:
+  checker()
   transition()
   menu()
