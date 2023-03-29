@@ -15,12 +15,14 @@ reset = Fore.RESET
 # End
 
 # Update Config
-VersionKey = ''
+VersionKey = 'https://raw.githubusercontent.com/Discordmodsbers/Zion/main/ServerKey.py'
 
 version = '3.1'
 # End
 
 # Update 
+def update():
+  os.system("update.py")
 
 def checker():
   url = VersionKey
