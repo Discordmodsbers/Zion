@@ -4,6 +4,8 @@ import sys
 from pystyle import Colors, Colorate
 from colorama import Fore
 import time
+import requests
+
 
 # Needed color stuff
 y = Fore.LIGHTYELLOW_EX
